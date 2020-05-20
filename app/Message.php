@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Message extends Model
 {
     use SoftDeletes;
-    protected $connection = 'mongodb';
-    protected $table = 'message';
-    protected $guarded = [];
+    protected $connection = 'pgsql';
+    protected $table = 'messages';
+    protected $fillable = [
+        'user_id' ,'room_id','parent_id',
+        'message' , 'seen', 'file' , 'edited' , 'like_count'
+    ];
     protected $dates = ['deleted_at'];
 
 

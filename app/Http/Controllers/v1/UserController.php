@@ -25,6 +25,10 @@ class UserController extends Controller implements JWTSubject
         $code = $this->createVerificationCode($user);
         $user->code = $code;
         event(new UserRegistred($user));
+        $email = $user->email;
+        $password = $user->password;
+        $token = auth()->attempt(compact('email' , 'password'));
+        $user->token = $token;
         return $user->toJson();
     }
 

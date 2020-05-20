@@ -25,6 +25,8 @@ Route::group([
 
     Route::post('/register' , 'UserController@register')->name('register');
     Route::post('/login' , 'UserController@login')->name('login');
-    Route::post('/sendCode' , 'UserController@sendCode')->name('sendCode')->middleware('auth');
-    Route::post('/checkCode' , 'UserController@checkCode')->name('checkCode')->middleware('auth');
+    Route::group(['middleware' => 'auth'] , function() {
+        Route::post('/sendCode' , 'UserController@sendCode')->name('sendCode');
+        Route::post('/checkCode' , 'UserController@checkCode')->name('checkCode');
+    });
 });

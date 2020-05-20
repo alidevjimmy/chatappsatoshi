@@ -15,6 +15,17 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('message');
+            $table->boolean('seen')->default(false);
+            $table->string('file')->nullable();
+            $table->boolean('edited')->default(false);
+            $table->integer('like_count')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ class CreateDeletesTable extends Migration
     {
         Schema::create('deletes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('type' , ['ROOM' , 'MESSAGE']);
+            $table->unsignedBigInteger('item_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

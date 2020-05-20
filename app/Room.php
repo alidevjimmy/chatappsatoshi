@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Room extends Model
 {
     use SoftDeletes , SoftCascadeTrait;
-    protected $connection = 'mongodb';
+    protected $connection = 'pgsql';
     protected $table = 'rooms';
-    protected $guarded = [];
+    protected $fillable = [
+        'type','admin_id'
+    ];
     protected $softCascade = ['messages'];
     protected $dates = ['deleted_at'];
 

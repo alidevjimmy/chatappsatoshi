@@ -16,9 +16,8 @@ class CreateUserLikeTable extends Migration
         Schema::create('user_like', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('message_id');
-            $table->foreign('message_id')->references('_id')->on('messages')->onDelete('cascade');
-
+            $table->unsignedBigInteger('message_id');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
             $table->unique(['user_id' , 'message_id']);
             $table->softDeletes();
             $table->timestamps();
