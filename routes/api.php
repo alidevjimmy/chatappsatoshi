@@ -22,7 +22,9 @@ Route::group([
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
-
+    Route::get('test' , function() {
+        return 'salam';
+    });
     Route::post('/register' , 'UserController@register')->name('register');
     Route::post('/login' , 'UserController@login')->name('login');
     Route::group(['middleware' => 'auth'] , function() {

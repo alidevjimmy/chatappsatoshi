@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\v1;
 
 use App\Events\UserRegistred;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
